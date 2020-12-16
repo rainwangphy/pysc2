@@ -26,14 +26,14 @@ from s2clientprotocol import common_pb2
 
 
 def image_differencer(path, proto_a, proto_b):
-  """proto_diff differencer for PySC2 image data."""
-  if path[-1] == "data" and len(path) >= 2:
-    image_data_path = proto_diff.ProtoPath(path[:-1])
-    image_data_a = image_data_path.get_field(proto_a)
-    if isinstance(image_data_a, common_pb2.ImageData):
-      image_data_b = image_data_path.get_field(proto_b)
-      image_a = features.Feature.unpack_layer(image_data_a)
-      image_b = features.Feature.unpack_layer(image_data_b)
-      return np_util.summarize_array_diffs(image_a, image_b)
+    """proto_diff differencer for PySC2 image data."""
+    if path[-1] == "data" and len(path) >= 2:
+        image_data_path = proto_diff.ProtoPath(path[:-1])
+        image_data_a = image_data_path.get_field(proto_a)
+        if isinstance(image_data_a, common_pb2.ImageData):
+            image_data_b = image_data_path.get_field(proto_b)
+            image_a = features.Feature.unpack_layer(image_data_a)
+            image_b = features.Feature.unpack_layer(image_data_b)
+            return np_util.summarize_array_diffs(image_a, image_b)
 
-  return None
+    return None

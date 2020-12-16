@@ -19,19 +19,19 @@ from __future__ import print_function
 
 
 def memoize(func):
-  """Memoization decorator."""
+    """Memoization decorator."""
 
-  class Memodict(dict):
-    """A memoization decorator dict."""
-    __slots__ = ()
-    __name__ = func.__name__
-    __doc__ = func.__doc__
+    class Memodict(dict):
+        """A memoization decorator dict."""
+        __slots__ = ()
+        __name__ = func.__name__
+        __doc__ = func.__doc__
 
-    def __call__(self, *args):
-      return self[args]
+        def __call__(self, *args):
+            return self[args]
 
-    def __missing__(self, args):
-      ret = self[args] = func(*args)
-      return ret
+        def __missing__(self, args):
+            ret = self[args] = func(*args)
+            return ret
 
-  return Memodict()
+    return Memodict()
